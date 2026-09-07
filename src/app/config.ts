@@ -191,7 +191,7 @@ export const HAS_VERCEL_BLOB_STORAGE =
 export const HAS_CLOUDFLARE_R2_STORAGE_CLIENT =
   Boolean(process.env.NEXT_PUBLIC_CLOUDFLARE_R2_BUCKET || 'cf-imgbed-bucket') &&
   Boolean(process.env.NEXT_PUBLIC_CLOUDFLARE_R2_ACCOUNT_ID || '7af52ee76ac4ac2ecd7811376e519f74') &&
-  Boolean(process.env.NEXT_PUBLIC_CLOUDFLARE_R2_PUBLIC_DOMAIN || 'img.juns.page');
+  Boolean(process.env.NEXT_PUBLIC_CLOUDFLARE_R2_PUBLIC_DOMAIN || 'r2.juns.page');
 export const HAS_CLOUDFLARE_R2_STORAGE =
   HAS_CLOUDFLARE_R2_STORAGE_CLIENT &&
   Boolean(process.env.CLOUDFLARE_R2_ACCESS_KEY) &&

@@ -85,9 +85,7 @@ const SITE_DOMAIN =
   process.env.NEXT_PUBLIC_DOMAIN ||
   // Legacy environment variable
   process.env.NEXT_PUBLIC_SITE_DOMAIN ||
-  VERCEL_PRODUCTION_URL ||
-  VERCEL_PROJECT_URL ||
-  VERCEL_DEPLOYMENT_URL;
+  'photos.juns.page';
 const SITE_DOMAIN_SHARE = process.env.NEXT_PUBLIC_DOMAIN_SHARE;
 
 // Used primarily for absolute references such as OG images
@@ -191,9 +189,9 @@ export const HAS_VERCEL_BLOB_STORAGE =
 // STORAGE: Cloudflare R2
 // Includes separate check for client-side usage, i.e., url construction
 export const HAS_CLOUDFLARE_R2_STORAGE_CLIENT =
-  Boolean(process.env.NEXT_PUBLIC_CLOUDFLARE_R2_BUCKET) &&
-  Boolean(process.env.NEXT_PUBLIC_CLOUDFLARE_R2_ACCOUNT_ID) &&
-  Boolean(process.env.NEXT_PUBLIC_CLOUDFLARE_R2_PUBLIC_DOMAIN);
+  Boolean(process.env.NEXT_PUBLIC_CLOUDFLARE_R2_BUCKET || 'cf-imgbed-bucket') &&
+  Boolean(process.env.NEXT_PUBLIC_CLOUDFLARE_R2_ACCOUNT_ID || '7af52ee76ac4ac2ecd7811376e519f74') &&
+  Boolean(process.env.NEXT_PUBLIC_CLOUDFLARE_R2_PUBLIC_DOMAIN || 'img.juns.page');
 export const HAS_CLOUDFLARE_R2_STORAGE =
   HAS_CLOUDFLARE_R2_STORAGE_CLIENT &&
   Boolean(process.env.CLOUDFLARE_R2_ACCESS_KEY) &&
@@ -229,15 +227,8 @@ export const HAS_MULTIPLE_STORAGE_PROVIDERS = [
 // Storage preference requires client-available keys
 // so it can be reached in the browser when uploading
 export const CURRENT_STORAGE: StorageType =
-  (process.env.NEXT_PUBLIC_STORAGE_PREFERENCE as StorageType | undefined) || (
-    HAS_MINIO_STORAGE_CLIENT
-      ? 'minio'
-      : HAS_CLOUDFLARE_R2_STORAGE_CLIENT
-        ? 'cloudflare-r2'
-        : HAS_AWS_S3_STORAGE_CLIENT
-          ? 'aws-s3'
-          : 'vercel-blob'
-  );
+  (process.env.NEXT_PUBLIC_STORAGE_PREFERENCE as StorageType | undefined) ||
+  'cloudflare-r2';
 
 // PERFORMANCE
 

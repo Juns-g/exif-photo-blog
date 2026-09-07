@@ -12,7 +12,7 @@ const HOSTNAME_VERCEL_BLOB = VERCEL_BLOB_STORE_ID
   : undefined;
 
 const HOSTNAME_CLOUDFLARE_R2 =
-  process.env.NEXT_PUBLIC_CLOUDFLARE_R2_PUBLIC_DOMAIN;
+  process.env.NEXT_PUBLIC_CLOUDFLARE_R2_PUBLIC_DOMAIN || 'r2.juns.page';
 
 const HOSTNAME_AWS_S3 =
   process.env.NEXT_PUBLIC_AWS_S3_BUCKET &&
@@ -45,6 +45,11 @@ const remotePatterns: RemotePattern[] = [
     hostname: 'api.qrserver.com',
     port: '',
     pathname: '/v1/create-qr-code/**',
+  },
+  {
+    protocol: 'https',
+    hostname: 'r2.juns.page',
+    pathname: '/**',
   },
 ];
 

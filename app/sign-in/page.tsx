@@ -21,7 +21,9 @@ export default async function SignInPage() {
       'fixed top-0 left-0 right-0 bottom-0',
       'flex items-center justify-center flex-col gap-8',
     )}>
-      <SignInForm />
+      <SignInForm
+        passkeyEnabled={Boolean(process.env.JUNS_AUTH_CLIENT_SECRET)}
+      />
       <LinkWithStatus
         href={PATH_ROOT}
         className={clsx(

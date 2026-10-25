@@ -22,14 +22,17 @@ import { clsx } from 'clsx/lite';
 import { PATH_ADMIN_PHOTOS } from '@/app/path';
 import IconLock from '@/components/icons/IconLock';
 import { useAppText } from '@/i18n/state/client';
+import LoaderButton from '@/components/primitives/LoaderButton';
 
 export default function SignInForm({
   includeTitle = true,
   shouldRedirect = true,
+  passkeyEnabled = false,
   className,
 }: {
   includeTitle?: boolean
   shouldRedirect?: boolean
+  passkeyEnabled?: boolean
   className?: string
 }) {
   const params = useSearchParams();
@@ -85,6 +88,17 @@ export default function SignInForm({
             {appText.auth.signIn}
           </span>
         </h1>}
+      {passkeyEnabled &&
+        <form action="/api/juns-auth/start" method="get" className="mb-5">
+          <input
+            type="hidden"
+            name={KEY_CALLBACK_URL}
+            value={params.get(KEY_CALLBACK_URL) || PATH_ADMIN_PHOTOS}
+          />
+          <LoaderButton type="submit" className="w-full justify-center">
+            Passkey 登录
+          </LoaderButton>
+        </form>}
       <form action={action} className="w-full">
         <div className="space-y-5 w-full -translate-y-0.5">
           {response === KEY_CREDENTIALS_SIGN_IN_ERROR &&

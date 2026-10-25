@@ -41,7 +41,7 @@ export function proxy(req: NextRequest, res:NextResponse) {
 
 export const config = {
   // Excludes:
-  // - /api + /api/auth*
+  // - /api + /api/auth* + /api/juns-auth/*
   // - /_next/static*
   // - /_next/image*
   // - /favicon.ico + /favicons/*
@@ -54,5 +54,5 @@ export const config = {
   // - /template-image-tight
   // - /template-url
   // eslint-disable-next-line max-len
-  matcher: ['/((?!api$|api/auth|_next/static|_next/image|favicon.ico$|favicons/|grid$|full$|about$|home-image$|template-image$|template-image-tight$|template-url$|$).*)'],
+  matcher: ['/((?!api$|api/auth|api/juns-auth/|_next/static|_next/image|favicon.ico$|favicons/|grid$|full$|about$|home-image$|template-image$|template-image-tight$|template-url$|$).*)'],
 };
